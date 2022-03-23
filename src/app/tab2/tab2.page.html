@@ -1,0 +1,50 @@
+<ion-header >
+  <ion-toolbar>
+    <ion-title>
+      Offers
+    </ion-title>
+    <ion-buttons slot = "primary">
+      <ion-button routerLink = "/tabs/tab2/newoffer"><!--routerLink no bracket bc not dynamic-->
+        <ion-icon name = "add" slot ="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class = "ion-padding">
+  <ion-grid>
+    <ion-row>
+      <ion-col size- md ="8" offset-md = "2">
+        <!--show everything in list-->
+        <ion-list *ngFor = "let offer of offers">
+          <!--route to offerdetail pg: bnb3-->        <!--offer.id: match variable from ngFor--> 
+          <ion-item                                       
+          (click) = "onClickOffer(offer.id)"
+          detail>
+         <!--bnb3: creat dynamic router for offerdetail; [routerLink] bc dynamic-->
+            <ion-thumbnail slot = "start">
+              <!--match variable from *ngfor in image-->
+              <img src = {{offer.image}}>
+            </ion-thumbnail>
+            <ion-label>
+              <h1>{{offer.title}}</h1>
+              <!--div doesnt do anything-just for formatting-->
+              <div class=" offer-details">
+                <ion-icon name = "calendar" color ="secondary"></ion-icon>
+                <ion-text color= "primary" class = "space-left">{{offer.availableFrom | date}}</ion-text>
+                <span class="space-left"> to</span>
+                <ion-icon name = "calendar" color ="secondary" class = "space-left"></ion-icon>
+                <ion-text color= "primary" class = "space-left">{{offer.availableTo | date}}</ion-text>
+              </div>
+              
+
+            </ion-label>
+          </ion-item>
+          
+        </ion-list>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<!--after router go to places.service.ts-->
